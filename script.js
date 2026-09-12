@@ -3,7 +3,7 @@
 // Talks only to the local FastAPI backend. No external APIs, no keys.
 // =====================================================================
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://movie-recommendation-ppeo.onrender.com";
 
 const searchInput = document.getElementById("searchInput");
 const searchSpinner = document.getElementById("searchSpinner");
