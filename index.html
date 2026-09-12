@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MovieMind — AI Movie Recommendations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-reel">🎞</span>
+      <span class="brand-name">MovieMind</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#top">Home</a>
+      <a href="#recommendations">Recommendations</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="top" class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">Movie<span class="hero-title-accent">Mind</span></h1>
+      <p class="hero-subtitle">Find movies you'll actually love, powered by NLP and cosine similarity.</p>
+
+      <div class="search-block">
+        <p class="ticket-label">Admit one recommendation</p>
+        <div class="search-bar">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search for a movie..."
+            autocomplete="off"
+            aria-label="Search for a movie"
+          />
+          <div id="searchSpinner" class="mini-spinner hidden" aria-hidden="true"></div>
+        </div>
+
+        <ul id="suggestionsList" class="suggestions hidden"></ul>
+
+        <div class="ticket-divider" aria-hidden="true"></div>
+
+        <button id="recommendBtn" class="btn-primary" disabled>
+          Get Recommendations
+        </button>
+      </div>
+
+      <p id="selectedHint" class="selected-hint hidden">
+        <span class="check-mark">✓</span> <span id="selectedTitle"></span>
+      </p>
+    </div>
+  </section>
+
+  <section id="recommendations" class="results">
+    <div class="results-inner">
+
+      <div id="stateIdle" class="state-panel">
+        <span class="idle-icon" aria-hidden="true">🎬</span>
+        <p>Search a title above to get started.</p>
+      </div>
+
+      <div id="stateLoading" class="state-panel hidden">
+        <div class="spinner"></div>
+        <p>Finding movies...</p>
+      </div>
+
+      <div id="stateNotFound" class="state-panel hidden">
+        <h3>Movie not found</h3>
+        <p>Try searching for another movie.</p>
+      </div>
+
+      <div id="stateError" class="state-panel hidden">
+        <h3>Something went wrong.</h3>
+        <p>Make sure the FastAPI backend is running at <code>http://127.0.0.1:8000</code>.</p>
+      </div>
+
+      <div id="stateResults" class="hidden">
+        <div class="results-header">
+          <div id="baseMoviePoster" class="base-poster"></div>
+          <div class="results-header-text">
+            <p class="because-label">Because you liked</p>
+            <h2 id="baseMovieTitle" class="because-title"></h2>
+            <p id="resultsCount" class="results-count"></p>
+          </div>
+        </div>
+        <div id="cardsGrid" class="cards-grid"></div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-brand">MovieMind</p>
+    <p class="footer-tag">Content-based movie recommendations — FastAPI • NLP • TF-IDF • Cosine Similarity</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
